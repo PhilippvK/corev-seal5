@@ -3,7 +3,10 @@
 	url = https://github.com/tum-ei-eda/etiss_arch_riscv.git
 [submodule "coredsl-to-llvm"]
 	path = coredsl-to-llvm
-	url = git@gitlab.lrz.de:de-tum-ei-eda-esl/llvm/coredsl-to-llvm.git
+	url = ../coredsl-to-llvm.git
 [submodule "M2-ISA-R"]
 	path = M2-ISA-R
-	url = git@gitlab.lrz.de:de-tum-ei-eda-esl/llvm/M2-ISA-R-llvmgen
+	url = ../M2-ISA-R-llvmgen
+[submodule "llvm-project"]
+	path = llvm-project
+	url = https://github.com/llvm/llvm-project.git
