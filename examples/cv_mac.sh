@@ -9,6 +9,7 @@ DIR=$(pwd)
 # Configure
 EXT="XCoreVMac"  # used in Coredsl
 EXT_="XCVMac"  # used by LLVM
+INSN="CV_MAC"
 CORE="RV32IMACFDXCoreV"
 COREDSL_FILE="XCoreVMac.core_desc"  # to be removed
 M2ISAR_LOG_LEVEL=info
@@ -17,7 +18,7 @@ M2ISAR_LOG_LEVEL=info
 ETISS_ARCH_DIR=$DIR/etiss_arch_riscv
 TOP=$ETISS_ARCH_DIR/top.core_desc
 CORE_DESC=$ETISS_ARCH_DIR/rv_xcorev/XCoreVMac.core_desc
-CORE_DESC_FIXED=$CORE_DESC.1
+CORE_DESC_FIXED=$CORE_DESC.2
 # Workaround to remove includes from coredsl files (unsupported by coredsl2tablegen)
 # Currently using manually edited file as input
 # cat $CORE_DESC | sed "s/^import/\/\/ import/g" > $CORE_DESC_FIXED
@@ -26,13 +27,14 @@ YAML=$YAML_DIR/$EXT.yml
 M2ISAR_DIR=$DIR/M2-ISA-R
 COREDSL2LLVM_DIR=$DIR/coredsl-to-llvm
 SCRIPTS_DIR=$DIR/scripts
-PYTHON_DIR=$DIR/python
 WORK_DIR=$DIR/work_dir
 GEN_DIR=$WORK_DIR/gen
 # LLVM_DIR=$WORK_DIR/llvm-project
 LLVM_DIR=$DIR/llvm-project
 LLVM_BUILD_DIR=$LLVM_DIR/build
+# LLVM_BUILD_DIR=$WORK_DIR/build
 LLVM_INSTALL_DIR=$LLVM_DIR/install
+# LLVM_INSTALL_DIR=$WORK_DIR/install
 
 # Limit number of parallel link jobs
 MAX_LINK_JOBS=$(free --giga | grep Mem | awk '{print int($2 / 16)}')
@@ -43,7 +45,8 @@ export PYTHONPATH=$M2ISAR_DIR:$PYTHONPATH
 export LLVM_REF=ae42196bc493ffe877a7e3dff8be32035dea4d07
 
 # echo "[FLOW] setup submodules"
-# git -C $DIR submodule update --init --recursive
+# git -C $DIR submodule update --init
+# git -C $ETISS_ARCH_DIR submodule update --init rv_xcorev
 
 # optional (unsafe operation if GEN_DIR not set!)
 # echo "[FLOW] cleanup previous outputs"
@@ -66,16 +69,19 @@ cmake --build $LLVM_BUILD_DIR
 # cmake --install $LLVM_BUILD_DIR
 
 echo "[FLOW] add llvm markers"
-LLVM_DIR=$LLVM_DIR $SCRIPTS_DIR/insert_markers.sh --msg "'add llvm markers'"
-cmake --build $DIR/work_dir/llvm-project/build
+git -C $LLVM_DIR apply $DIR/insert_markers.patch
+git -C $LLVM_DIR add --all
+git -C $LLVM_DIR commit -m "[Patcher] Insert Markers"
+# cmake --build $DIR/work_dir/llvm-project/build
 
 echo "[FLOW] generate m2isar metamodel"
 python -m m2isar.frontends.coredsl2.parser --log $M2ISAR_LOG_LEVEL $TOP
 
 echo "[FLOW] generate baseline patches"
-echo python -m m2isar.backends.llvmgen.writer $ETISS_ARCH_DIR/gen_model/top.m2isarmodel --template RISCV --core $CORE --log $M2ISAR_LOG_LEVEL --set $EXT --gen-features --gen-insn-info --gen-asm-parser --gen-isa-info --gen-index --yaml $YAML --output-dir $GEN_DIR/0/
+mkdir -p $GEN_DIR/0
+python -m m2isar.backends.llvmgen.writer $ETISS_ARCH_DIR/gen_model/top.m2isarmodel --template RISCV --core $CORE --log $M2ISAR_LOG_LEVEL --set $EXT --insn $INSN --gen-features --gen-insn-info --gen-insn-formats --gen-asm-parser --gen-isa-info --gen-index --yaml $YAML --output-dir $GEN_DIR/0/
 cd $LLVM_DIR
-python $PYTHON_DIR/inject_extensions_2.py $GEN_DIR/0/index.yaml --msg "Add $EXT baseline patches" --append --out-file $GEN_DIR/0/diff.patch
+python $SCRIPTS_DIR/inject_extensions_2.py $GEN_DIR/0/index.yaml --msg "Add $EXT baseline patches" --append --out-file $GEN_DIR/0/diff.patch
 cd -
 git -C $LLVM_DIR am $GEN_DIR/0/diff.patch
 
@@ -97,12 +103,12 @@ cp $CORE_DESC_FIXED $CORE_DESC_FIXED2
 $COREDSL2LLVM_DIR/cdsl2llvm $CORE_DESC_FIXED2 $EXT_
 mkdir -p $GEN_DIR/1/llvm/lib/Target/RISCV/
 cp $GEN_DIR/1/$EXT.td $GEN_DIR/1/llvm/lib/Target/RISCV/
-cp $GEN_DIR/1/${EXT}InstrInfo.td $GEN_DIR/1/llvm/lib/Target/RISCV/
+# cp $GEN_DIR/1/${EXT}InstrFormat.td $GEN_DIR/1/llvm/lib/Target/RISCV/
 tee $GEN_DIR/1/llvm/lib/Target/RISCV/RISCVInstrInfo.td.insn_info_includes << END
 include "${EXT}.td"
-include "${EXT}InstrFormat.td"
+// include "${EXT}InstrFormat.td"
 END
-tee $GEN_DIR/1/index.yml << END
+tee $GEN_DIR/1/index.yaml << END
 artifacts:
 - append: true
   key: insn_info_includes
@@ -112,12 +118,12 @@ extensions:
 - artifacts:
   - append: false
     path: llvm/lib/Target/RISCV/$EXT.td
-  - append: false
-    path: llvm/lib/Target/RISCV/${EXT}InstrFormat.td
+  # - append: false
+  #   path: llvm/lib/Target/RISCV/${EXT}InstrFormat.td
 END
 
 cd $LLVM_DIR
-python $PYTHON_DIR/inject_extensions_2.py $GEN_DIR/1/index.yaml --msg "Add $EXT patterns" --append --out-file $GEN_DIR/1/diff.patch
+python $SCRIPTS_DIR/inject_extensions_2.py $GEN_DIR/1/index.yaml --msg "Add $EXT patterns" --append --out-file $GEN_DIR/1/diff.patch
 cd -
 git -C $LLVM_DIR am $GEN_DIR/1/diff.patch
 
