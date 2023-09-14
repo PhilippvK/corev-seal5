@@ -21,6 +21,9 @@ It is recommended to setup a virtual python environment for using seal5. This ca
 ```python
 python3 -m venv venv
 source venv/bin/activate
+
+# install m2-isa-r
+pip install -e M2-ISA-R/
 ```
 
 ## Examples
