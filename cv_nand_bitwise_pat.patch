@@ -1,0 +1,18 @@
+commit 1bf28cd725f41dbecd4b5128e346590a2faf4235
+Author: Philipp van Kempen <philipp.van-kempen@tum.de>
+Date:   Mon Feb 5 16:02:14 2024 +0100
+
+    add correct cv_nand_bitwise pattern
+
+diff --git a/llvm/lib/Target/RISCV/XCoreVNand.td b/llvm/lib/Target/RISCV/XCoreVNand.td
+index 8f262b56e065..e32cd816762c 100644
+--- a/llvm/lib/Target/RISCV/XCoreVNand.td
++++ b/llvm/lib/Target/RISCV/XCoreVNand.td
+@@ -4,4 +4,6 @@ def : Pat<
+ 	(xor (and GPR:$rs2, GPR:$rs1), (i32 4294967295)),
+ 	(CV_NAND_BITWISE__S_S_S GPR:$rs1, GPR:$rs2)>;
+ 
+-
++def : Pat<
++	(xor (and GPR:$rs2, GPR:$rs1), (i32 -1)),
++	(CV_NAND_BITWISE__S_S_S GPR:$rs1, GPR:$rs2)>;

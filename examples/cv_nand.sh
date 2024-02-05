@@ -133,6 +133,18 @@ cmake --build $LLVM_BUILD_DIR
 
 # Test if compilation works and patterns are used
 export PATH=${LLVM_BUILD_DIR}/bin:$PATH
-llvm-lit tests/cv_nand/
+llvm-lit tests/cv_nand/  # Codegen test will fail!
+
+# Apply fix with correct pattern
+git -C $LLVM_DIR apply ../cv_nand_bitwise_pat.patch
+
+# Rebuilt llvm
+cmake --build $LLVM_BUILD_DIR
+
+# Try again
+llvm-lit tests/cv_nand/  # All test should pass now
+
+# Use following command to dump ASM manually:
+# clang -cc1 -triple riscv32 -target-feature +m -target-feature +xcvnand tests/cv_nand/cv_nand.c -o - -S -O3
 
 # TODO: simulation works (includes patching etiss)

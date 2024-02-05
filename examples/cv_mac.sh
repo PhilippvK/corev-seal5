@@ -135,4 +135,7 @@ cmake --build $LLVM_BUILD_DIR
 export PATH=${LLVM_BUILD_DIR}/bin:$PATH
 llvm-lit tests/cv_mac/
 
+# Use following command to dump ASM manually:
+# clang -cc1 -triple riscv32 -target-feature +m -target-feature +xcvmac tests/cv_mac/cv_mac.c -o - -S -O3
+
 # TODO: simulation works (includes patching etiss)
