@@ -11,7 +11,6 @@ EXT="XCoreVMac"  # used in Coredsl
 EXT_="XCVMac"  # used by LLVM
 INSN="CV_MAC"
 CORE="RV32IMACFDXCoreV"
-COREDSL_FILE="XCoreVMac.core_desc"  # to be removed
 M2ISAR_LOG_LEVEL=info
 
 # Definitions
@@ -132,4 +131,8 @@ cmake --build $LLVM_BUILD_DIR
 # optional
 # cmake --install $LLVM_BUILD_DIR
 
-# TODO: test if compilation and simulation works (includes patching etiss)
+# Test if compilation works and patterns are used
+export PATH=${LLVM_BUILD_DIR}/bin:$PATH
+llvm-lit tests/cv_mac/
+
+# TODO: simulation works (includes patching etiss)
