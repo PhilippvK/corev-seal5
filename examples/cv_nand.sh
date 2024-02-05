@@ -133,7 +133,7 @@ cmake --build $LLVM_BUILD_DIR
 
 # Test if compilation works and patterns are used
 export PATH=${LLVM_BUILD_DIR}/bin:$PATH
-llvm-lit tests/cv_nand/  # Codegen test will fail!
+llvm-lit tests/cv_nand/ || true  # Codegen test will fail!
 
 # Apply fix with correct pattern
 git -C $LLVM_DIR apply ../cv_nand_bitwise_pat.patch
