@@ -1,0 +1,6 @@
+---
+XCoreVNand:
+  feature: XCVNand
+  arch: xcvnand
+  version: "1.0"
+  experimental: false

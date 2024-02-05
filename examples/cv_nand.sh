@@ -7,19 +7,16 @@ DIR=$(pwd)
 
 
 # Configure
-EXT="XCoreVMac"  # used in Coredsl
-EXT_="XCVMac"  # used by LLVM
-# INSN="CV_MAC"
-# INSN="CV_NAND_LOGICAL"
+EXT="XCoreVNand"  # used in Coredsl
+EXT_="XCVNand"  # used by LLVM
 INSN="CV_NAND_BITWISE"
 CORE="RV32IMACFDXCoreV"
-COREDSL_FILE="XCoreVMac.core_desc"  # to be removed
 M2ISAR_LOG_LEVEL=info
 
 # Definitions
 ETISS_ARCH_DIR=$DIR/etiss_arch_riscv
 TOP=$ETISS_ARCH_DIR/top.core_desc
-CORE_DESC=$ETISS_ARCH_DIR/rv_xcorev/XCoreVMac.core_desc
+CORE_DESC=$ETISS_ARCH_DIR/rv_xcorev/XCoreVNand.core_desc
 CORE_DESC_FIXED=$CORE_DESC.2
 # Workaround to remove includes from coredsl files (unsupported by coredsl2tablegen)
 # Currently using manually edited file as input
@@ -134,4 +131,8 @@ cmake --build $LLVM_BUILD_DIR
 # optional
 # cmake --install $LLVM_BUILD_DIR
 
-# TODO: test if compilation and simulation works (includes patching etiss)
+# Test if compilation works and patterns are used
+export PATH=${LLVM_BUILD_DIR}/bin:$PATH
+llvm-lit tests/cv_nand/
+
+# TODO: simulation works (includes patching etiss)
