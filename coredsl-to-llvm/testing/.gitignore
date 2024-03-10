@@ -1,0 +1,7 @@
+*
+!src
+!src/*
+!linker.ld
+!Makefile
+!*.py
+!.gitignore

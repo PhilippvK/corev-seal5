@@ -1,0 +1,4 @@
+[submodule "llvm"]
+	path = llvm
+	url = ../core-v-llvm-project.git
+	branch = pattern-gen
