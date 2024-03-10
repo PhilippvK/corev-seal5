@@ -1,0 +1,1491 @@
+operands:
+  rd:
+    output: true
+    type: GPR
+  rs1:
+    output: false
+    type: GPR
+  rs2:
+    output: false
+    type: GPR
+options:
+  hasSideEffects: false
+  isTerminator: false
+  mayLoad: false
+  mayStore: false
+types:
+  i32:
+    cType: i32
+    fType: Li
+extensions:
+- name: XCoreVSimd
+  fileName: XCoreVSimd
+  identifier: xcvsimd
+  instructions:
+    CV_ABS_B:
+      argstring: $rd, $rs1
+      operands: {}
+    CV_ABS_H:
+      argstring: $rd, $rs1
+      operands: {}
+    CV_ADD_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_ADD_DIV2:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_ADD_DIV4:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_ADD_DIV8:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_ADD_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_ADD_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_ADD_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_ADD_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_ADD_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_AND_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_AND_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_AND_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_AND_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_AND_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_AND_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_AVGU_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_AVGU_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_AVGU_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_AVGU_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_AVGU_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_AVGU_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_AVG_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_AVG_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_AVG_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_AVG_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_AVG_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_AVG_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPEQ_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPEQ_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPEQ_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_CMPEQ_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_CMPEQ_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPEQ_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGEU_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGEU_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGEU_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_CMPGEU_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_CMPGEU_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGEU_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGE_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGE_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGE_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_CMPGE_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_CMPGE_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGE_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGTU_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGTU_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGTU_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_CMPGTU_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_CMPGTU_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGTU_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGT_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGT_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGT_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_CMPGT_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_CMPGT_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPGT_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLEU_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLEU_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLEU_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_CMPLEU_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_CMPLEU_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLEU_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLE_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLE_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLE_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_CMPLE_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_CMPLE_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLE_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLTU_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLTU_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLTU_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_CMPLTU_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_CMPLTU_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLTU_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLT_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLT_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLT_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_CMPLT_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_CMPLT_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPLT_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPNE_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPNE_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPNE_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_CMPNE_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_CMPNE_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CMPNE_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CPLXCONJ:
+      argstring: $rd, $rs1
+      operands: {}
+    CV_CPLXMUL_I:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CPLXMUL_I_DIV2:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CPLXMUL_I_DIV4:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CPLXMUL_I_DIV8:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CPLXMUL_R:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CPLXMUL_R_DIV2:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CPLXMUL_R_DIV4:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_CPLXMUL_R_DIV8:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_DOTSP_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_DOTSP_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_DOTSP_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_DOTSP_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_DOTSP_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_DOTSP_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_DOTUP_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_DOTUP_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_DOTUP_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_DOTUP_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_DOTUP_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_DOTUP_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_DOTUSP_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_DOTUSP_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_DOTUSP_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_DOTUSP_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_DOTUSP_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_DOTUSP_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_EXTRACTU_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_EXTRACTU_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_EXTRACT_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_EXTRACT_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_INSERT_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: true
+          type: uimm6
+    CV_INSERT_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: true
+          type: uimm6
+    CV_MAXU_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MAXU_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MAXU_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_MAXU_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_MAXU_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MAXU_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MAX_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MAX_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MAX_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_MAX_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_MAX_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MAX_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MINU_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MINU_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MINU_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_MINU_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_MINU_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MINU_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MIN_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MIN_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MIN_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_MIN_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_MIN_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MIN_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_OR_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_OR_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_OR_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_OR_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_OR_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_OR_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_PACK:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_PACKHI_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_PACKLO_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_PACK_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SDOTSP_B:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTSP_H:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTSP_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTSP_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTSP_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTSP_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTUP_B:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTUP_H:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTUP_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTUP_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTUP_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTUP_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTUSP_B:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTUSP_H:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTUSP_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTUSP_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTUSP_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SDOTUSP_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SHUFFLE2_B:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SHUFFLE2_H:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_SHUFFLEI0_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_SHUFFLEI1_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_SHUFFLEI2_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_SHUFFLEI3_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_SHUFFLE_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SHUFFLE_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SHUFFLE_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_SLL_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SLL_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SLL_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_SLL_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_SLL_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SLL_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SRA_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SRA_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SRA_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_SRA_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_SRA_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SRA_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SRL_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SRL_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SRL_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_SRL_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: uimm6
+    CV_SRL_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SRL_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SUBROTMJ:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SUBROTMJ_DIV2:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SUBROTMJ_DIV4:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SUBROTMJ_DIV8:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SUB_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SUB_DIV2:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SUB_DIV4:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SUB_DIV8:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SUB_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SUB_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_SUB_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_SUB_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SUB_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_XOR_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_XOR_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_XOR_SCI_B:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_XOR_SCI_H:
+      argstring: $rd, $rs1, $Imm6
+      operands:
+        Imm6:
+          output: false
+          type: simm6
+    CV_XOR_SC_B:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_XOR_SC_H:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+- name: XCoreVAlu
+  fileName: XCoreVAlu
+  identifier: xcvalu
+  instructions:
+    CV_ABS:
+      argstring: $rd, $rs1
+      operands: {}
+    CV_ADDN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+    CV_ADDNR:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_ADDRN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+    CV_ADDUN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+    CV_ADDUNR:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_ADDURN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+    CV_CLIP:
+      argstring: $rd, $rs1, $Is2
+      operands:
+        Is2:
+          output: false
+          type: uimm5
+    CV_CLIPU:
+      argstring: $rd, $rs1, $Is2
+      operands:
+        Is2:
+          output: false
+          type: uimm5
+    CV_CLIPUR:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_EXTBS:
+      argstring: $rd, $rs1
+      operands: {}
+    CV_EXTBZ:
+      argstring: $rd, $rs1
+      operands: {}
+    CV_EXTHS:
+      argstring: $rd, $rs1
+      operands: {}
+    CV_EXTHZ:
+      argstring: $rd, $rs1
+      operands: {}
+    CV_MAX:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MAXU:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MIN:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_MINU:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SLET:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SLETU:
+      argstring: $rd, $rs1, $rs2
+      operands: {}
+    CV_SUBN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+    CV_SUBRN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+    CV_SUBUN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+    CV_SUBURN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+- name: XCoreVMem
+  fileName: XCoreVMem
+  identifier: xcvmem
+  instructions:
+    CV_LBU_ri_inc:
+      argstring: $rd, $imm12($rs1!)
+      mayLoad: true
+      operands:
+        imm12:
+          output: false
+          type: simm12
+        rs1_wb:
+          output: true
+          type: GPR
+    CV_LBU_rr:
+      argstring: $rd, $rs2($rs1)
+      mayLoad: true
+      operands: {}
+    CV_LBU_rr_inc:
+      argstring: $rd, $rs2($rs1)
+      mayLoad: true
+      operands:
+        rs1_wb:
+          output: true
+          type: GPR
+    CV_LB_ri_inc:
+      argstring: $rd, $imm12($rs1!)
+      mayLoad: true
+      operands:
+        imm12:
+          output: false
+          type: simm12
+        rs1_wb:
+          output: true
+          type: GPR
+    CV_LB_rr:
+      argstring: $rd, $rs2($rs1)
+      mayLoad: true
+      operands: {}
+    CV_LB_rr_inc:
+      argstring: $rd, $rs2($rs1)
+      mayLoad: true
+      operands:
+        rs1_wb:
+          output: true
+          type: GPR
+    CV_LHU_ri_inc:
+      argstring: $rd, $imm12($rs1!)
+      mayLoad: true
+      operands:
+        imm12:
+          output: false
+          type: simm12
+        rs1_wb:
+          output: true
+          type: GPR
+    CV_LHU_rr:
+      argstring: $rd, $rs2($rs1)
+      mayLoad: true
+      operands: {}
+    CV_LHU_rr_inc:
+      argstring: $rd, $rs2($rs1)
+      mayLoad: true
+      operands:
+        rs1_wb:
+          output: true
+          type: GPR
+    CV_LH_ri_inc:
+      argstring: $rd, $imm12($rs1!)
+      mayLoad: true
+      operands:
+        imm12:
+          output: false
+          type: simm12
+        rs1_wb:
+          output: true
+          type: GPR
+    CV_LH_rr:
+      argstring: $rd, $rs2($rs1)
+      mayLoad: true
+      operands: {}
+    CV_LH_rr_inc:
+      argstring: $rd, $rs2($rs1)
+      mayLoad: true
+      operands:
+        rs1_wb:
+          output: true
+          type: GPR
+    CV_LW_ri_inc:
+      argstring: $rd, $imm12($rs1!)
+      mayLoad: true
+      operands:
+        imm12:
+          output: false
+          type: simm12
+        rs1_wb:
+          output: true
+          type: GPR
+    CV_LW_rr:
+      argstring: $rd, $rs2($rs1)
+      mayLoad: true
+      operands: {}
+    CV_LW_rr_inc:
+      argstring: $rd, $rs2($rs1)
+      mayLoad: true
+      operands:
+        rs1_wb:
+          output: true
+          type: GPR
+    CV_SB_ri_inc:
+      argstring: $rs2, $imm12($rs1!)
+      mayStore: true
+      operands:
+        imm12:
+          output: false
+          type: simm12
+        rs1_wb:
+          output: true
+          type: GPR
+    CV_SB_rr:
+      argstring: $rs2, $rs3($rs1)
+      mayStore: true
+      operands:
+        rs3:
+          output: false
+          type: GPR
+    CV_SB_rr_inc:
+      argstring: $rs2, $rs3($rs1)
+      mayStore: true
+      operands:
+        rs1_wb:
+          output: true
+          type: GPR
+        rs3:
+          output: false
+          type: GPR
+    CV_SH_ri_inc:
+      argstring: $rs2, $imm12($rs1!)
+      mayStore: true
+      operands:
+        imm12:
+          output: false
+          type: simm12
+        rs1_wb:
+          output: true
+          type: GPR
+    CV_SH_rr:
+      argstring: $rs2, $rs3($rs1)
+      mayStore: true
+      operands:
+        rs3:
+          output: false
+          type: GPR
+    CV_SH_rr_inc:
+      argstring: $rs2, $rs3($rs1)
+      mayStore: true
+      operands:
+        rs1_wb:
+          output: true
+          type: GPR
+        rs3:
+          output: false
+          type: GPR
+    CV_SW_ri_inc:
+      argstring: $rs2, $imm12($rs1!)
+      mayStore: true
+      operands:
+        imm12:
+          output: false
+          type: simm12
+        rs1_wb:
+          output: true
+          type: GPR
+    CV_SW_rr:
+      argstring: $rs2, $rs3($rs1)
+      mayStore: true
+      operands:
+        rs3:
+          output: false
+          type: GPR
+    CV_SW_rr_inc:
+      argstring: $rs2, $rs3($rs1)
+      mayStore: true
+      operands:
+        rs1_wb:
+          output: true
+          type: GPR
+        rs3:
+          output: false
+          type: GPR
+- name: XCoreVMac
+  fileName: XCoreVMac
+  identifier: xcvmac
+  instructions:
+    CV_MAC:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_MACHHSN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_MACHHSRN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_MACHHUN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_MACHHURN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_MACSN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_MACSRN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_MACUN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_MACURN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_MSU:
+      argstring: $rd, $rs1, $rs2
+      operands:
+        rd:
+          output: false
+          type: GPR
+        rd_wb:
+          output: true
+          type: GPR
+    CV_MULHHSN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+    CV_MULHHSRN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+    CV_MULHHUN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+    CV_MULHHURN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+    CV_MULSN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+    CV_MULSRN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+    CV_MULUN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5
+    CV_MULURN:
+      argstring: $rd, $rs1, $rs2, $Is3
+      operands:
+        Is3:
+          output: false
+          type: uimm5

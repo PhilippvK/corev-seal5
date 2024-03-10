@@ -1,0 +1,131 @@
+InstructionSet XCoreVBitmanip extends RISCVBase {
+    instructions {
+        // SOURCE FILE: instr_srcs/XCoreVALU_BitmanipI.txt
+        CV_EXTRACT {
+            encoding: 2'b00 :: Luimm5[4:0] :: Iuimm5[4:0] :: rs1[4:0] :: 3'b000 :: rd[4:0] :: 7'b1011011;
+            assembly: {"cv.extract", "{name(rd)}, {name(rs1)}, {Luimm5}, {Iuimm5}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (signed<32>)(((X[rs1] >> Iuimm5) & ((2 << Luimm5) - 1)) << (31 - Luimm5)) >> (31 - Luimm5);
+                }
+            }
+        }
+        CV_EXTRACTU {
+            encoding: 2'b01 :: Luimm5[4:0] :: Iuimm5[4:0] :: rs1[4:0] :: 3'b000 :: rd[4:0] :: 7'b1011011;
+            assembly: {"cv.extractu", "{name(rd)}, {name(rs1)}, {Luimm5}, {Iuimm5}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (unsigned)((X[rs1] >> Iuimm5) & ((2 << Luimm5) - 1));
+                }
+            }
+        }
+        // CV_INSERT {
+        //     encoding: 2'b10 :: Luimm5[4:0] :: Iuimm5[4:0] :: rs1[4:0] :: 3'b000 :: rd[4:0] :: 7'b1011011;
+        //     assembly: {"cv.insert", "{name(rd)}, {name(rs1)}, {Luimm5}, {Iuimm5}" };
+        //     behavior: {
+        //         // TODO
+        //     }
+        // }
+        // CV_BCLR {
+        //     encoding: 2'b00 :: Luimm5[4:0] :: Iuimm5[4:0] :: rs1[4:0] :: 3'b001 :: rd[4:0] :: 7'b1011011;
+        //     assembly: {"cv.bclr", "{name(rd)}, {name(rs1)}, {Luimm5}, {Iuimm5}" };
+        //     behavior: {
+        //         // TODO
+        //     }
+        // }
+        // CV_BSET {
+        //     encoding: 2'b01 :: Luimm5[4:0] :: Iuimm5[4:0] :: rs1[4:0] :: 3'b001 :: rd[4:0] :: 7'b1011011;
+        //     assembly: {"cv.bset", "{name(rd)}, {name(rs1)}, {Luimm5}, {Iuimm5}" };
+        //     behavior: {
+        //         // TODO
+        //     }
+        // }
+        // CV_BITREV {
+        //     encoding: 2'b11 :: Luimm5[4:0] :: Iuimm5[4:0] :: rs1[4:0] :: 3'b001 :: rd[4:0] :: 7'b1011011;
+        //     assembly: {"cv.bitrev", "{name(rd)}, {name(rs1)}, {Luimm5}, {Iuimm5}" };
+        //     behavior: {
+        //         // TODO
+        //     }
+        // }
+        // SOURCE FILE: instr_srcs/XCoreVALU_BitmanipR.txt
+        CV_EXTRACTR {
+            encoding: 7'b0011000 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.extractr", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (signed<32>)(((X[rs1] >> X[rs2][31: 0][4:0]) & ((2 << X[rs2][31: 0][9:5]) - 1)) << (31 - X[rs2][31: 0][9:5])) >> (31 - X[rs2][31: 0][9:5]);
+                }
+            }
+        }
+        CV_EXTRACTUR {
+            encoding: 7'b0011001 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.extractur", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (unsigned)((X[rs1] >> X[rs2][31: 0][4:0]) & ((2 << X[rs2][31: 0][9:5]) - 1));
+                }
+            }
+        }
+        // CV_INSERTR {
+        //     encoding: 7'b0011010 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+        //     assembly: {"cv.insertr", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+        //     behavior: {
+        //         // TODO
+        //     }
+        // }
+        // CV_BCLRR {
+        //     encoding: 7'b0011100 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+        //     assembly: {"cv.bclrr", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+        //     behavior: {
+        //         // TODO
+        //     }
+        // }
+        // CV_BSETR {
+        //     encoding: 7'b0011101 :: rs2[4:0] :: scr1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+        //     assembly: {"cv.bsetr", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+        //     behavior: {
+        //         // TODO
+        //     }
+        // }
+        // CV_ROR {
+        //     encoding: 7'b0100000 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+        //     assembly: {"cv.ror", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+        //     behavior: {
+        //         // TODO
+        //     }
+        // }
+        // CV_FF1 {
+        //     encoding: 7'b0100001 :: 5'b00000 :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+        //     assembly: {"cv.ff1", "{name(rd)}, {name(rs1)}" };
+        //     behavior: {
+        //         // TODO
+        //     }
+        // }
+        // CV_FL1 {
+        //     encoding: 7'b0100010 :: 5'b00000 :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+        //     assembly: {"cv.fl1", "{name(rd)}, {name(rs1)}" };
+        //     behavior: {
+        //         // TODO
+        //     }
+        // }
+        // CV_CLB {
+        //     encoding: 7'b0100011 :: 5'b00000 :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+        //     assembly: {"cv.clb", "{name(rd)}, {name(rs1)}" };
+        //     behavior: {
+        //         if (rd != 0) {
+        //             if (X[rs1] == 0) return 0;
+        //             unsigned<5> i = 0;
+        //             while (X[rs1][31 - i] == X[rs1][31]) i = i + 1;
+        //             return i - 1;
+        //         }
+        //     }
+        // }
+        // CV_CNT {
+        //     encoding: 7'b0100100 :: 5'b00000 :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+        //     assembly: {"cv.cnt", "{name(rd)}, {name(rs1)}" };
+        //     behavior: {
+        //         // TODO
+        //     }
+        // }
+    }
+}

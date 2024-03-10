@@ -1,0 +1,11 @@
+import "XCoreVMac.core_desc"
+import "XCoreVNand.core_desc"
+import "XCoreVMem.core_desc"
+import "XCoreVBranchImmediate.core_desc"
+import "XCoreVAlu.core_desc"
+import "XCoreVBitmanip.core_desc"
+import "XCoreVSimd.core_desc"
+import "XCoreVHwlp.core_desc"
+
+InstructionSet XCoreV extends XCoreVMac, XCoreVNand, XCoreVMem, XCoreVBranchImmediate, XCoreVAlu, XCoreVBitmanip, XCoreVSimd, XCoreVHwlp {
+}

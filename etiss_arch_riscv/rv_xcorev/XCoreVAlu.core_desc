@@ -1,0 +1,303 @@
+InstructionSet XCoreVAlu extends RISCVBase {
+    instructions {
+        // SOURCE FILE: instr_srcs/XCoreVALU1.txt
+        CV_ABS {
+            encoding: 7'b0101000 :: 5'b00000 :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.abs", "{name(rd)}, {name(rs1)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = ((signed)X[rs1] < 0) ? (-X[rs1])[32-1:0] : X[rs1];
+                }
+            }
+        }
+        CV_SLET {
+            encoding: 7'b0101001 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.slet", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (unsigned<1>)((signed)X[rs1] <= (signed)X[rs2][31: 0]);
+                }
+            }
+        }
+        CV_SLETU {
+            encoding: 7'b0101010 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.sletu", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (unsigned<1>)((unsigned)X[rs1] <= (unsigned)X[rs2][31: 0]);
+                }
+            }
+        }
+        CV_MIN {
+            encoding: 7'b0101011 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.min", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = ((signed)X[rs1] < (signed)X[rs2][31: 0]) ? X[rs1] : X[rs2][31: 0];
+                }
+            }
+        }
+        CV_MINU {
+            encoding: 7'b0101100 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.minu", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = ((unsigned)X[rs1] < (unsigned)X[rs2][31: 0]) ? X[rs1] : X[rs2][31: 0];
+                }
+            }
+        }
+        CV_MAX {
+            encoding: 7'b0101101 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.max", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = ((signed)X[rs1] > (signed)X[rs2][31: 0]) ? X[rs1] : X[rs2][31: 0];
+                }
+            }
+        }
+        CV_MAXU {
+            encoding: 7'b0101110 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.maxu", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = ((unsigned)X[rs1] > (unsigned)X[rs2][31: 0]) ? X[rs1] : X[rs2][31: 0];
+                }
+            }
+        }
+        CV_EXTHS {
+            encoding: 7'b0110000 :: 5'b00000 :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.exths", "{name(rd)}, {name(rs1)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (signed)X[rs1][15:0];
+                }
+            }
+        }
+        CV_EXTHZ {
+            encoding: 7'b0110001 :: 5'b00000 :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.exthz", "{name(rd)}, {name(rs1)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (unsigned)X[rs1][15:0];
+                }
+            }
+        }
+        CV_EXTBS {
+            encoding: 7'b0110010 :: 5'b00000 :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.extbs", "{name(rd)}, {name(rs1)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (signed)X[rs1][7:0];
+                }
+            }
+        }
+        CV_EXTBZ {
+            encoding: 7'b0110011 :: 5'b00000 :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.extbz", "{name(rd)}, {name(rs1)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (unsigned)X[rs1][7:0];
+                }
+            }
+        }
+        // SOURCE FILE: instr_srcs/XCoreVALU2.txt
+        CV_CLIP {
+            encoding: 7'b0111000 :: Iuimm5[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.clip", "{name(rd)}, {name(rs1)}, {Iuimm5}" };
+            behavior: {
+                if (rd != 0) {
+                    signed<32> a = (Iuimm5) ? -(1 << (Iuimm5 - 1)) : -1;
+                    signed<32> b = (Iuimm5) ? ((1 << (Iuimm5 - 1)) - 1) : 0;
+                    if (X[rs1] <= a) X[rd] = a;
+                    else if (X[rs1] >= b) X[rd] = b;
+                    else X[rd] = X[rs1];
+                }
+            }
+        }
+        CV_CLIPU {
+            encoding: 7'b0111001 :: Iuimm5[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.clipu", "{name(rd)}, {name(rs1)}, {Iuimm5}" };
+            behavior: {
+                if (rd != 0) {
+                    signed<32> a = 0;
+                    signed<32> b = (Iuimm5) ? ((1 << (Iuimm5 - 1)) - 1) : 0;
+                    if ((signed)X[rs1] <= a) X[rd] = a;
+                    else if ((signed)X[rs1] >= b) X[rd] = b;
+                    else X[rd] = X[rs1];
+                }
+            }
+        }
+        CV_CLIPR {
+            encoding: 7'b0111010 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.clipr", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    signed<32> a = -(X[rs2][31: 0] + 1);
+                    signed<32> b = X[rs2][31: 0];
+                    if ((signed)X[rs1] <= a) X[rd] = a;
+                    else if ((signed)X[rs1] >= b) X[rd] = b;
+                    else X[rd] = X[rs1];
+                }
+            }
+        }
+        CV_CLIPUR {
+            encoding: 7'b0111011 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.clipur", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    signed<32> a = 0;
+                    signed<32> b = X[rs2][31: 0];
+                    if ((signed)X[rs1] <= a) X[rd] = a;
+                    else if ((signed)X[rs1] >= b) X[rd] = b;
+                    else X[rd] = X[rs1];
+                }
+            }
+        }
+        // SOURCE FILE: instr_srcs/XCoreVALU3.txt
+        CV_ADDN {
+            encoding: 2'b00 :: Luimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 3'b010 :: rd[4:0] :: 7'b1011011;
+            assembly: {"cv.addN", "{name(rd)}, {name(rs1)}, {name(rs2)}, {Luimm5}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (signed)(X[rs1] + X[rs2][31: 0]) >> Luimm5;
+                }
+            }
+        }
+        CV_ADDUN {
+            encoding: 2'b01 :: Luimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 3'b010 :: rd[4:0] :: 7'b1011011;
+            assembly: {"cv.adduN", "{name(rd)}, {name(rs1)}, {name(rs2)}, {Luimm5}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (unsigned)(X[rs1] + X[rs2][31: 0]) >> Luimm5;
+                }
+            }
+        }
+        CV_ADDRN {
+            encoding: 2'b10 :: Luimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 3'b010 :: rd[4:0] :: 7'b1011011;
+            assembly: {"cv.addRN", "{name(rd)}, {name(rs1)}, {name(rs2)}, {Luimm5}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (signed)(X[rs1] + X[rs2][31: 0] + (1 << (Luimm5 - 1))) >> Luimm5;
+                }
+            }
+        }
+        CV_ADDURN {
+            encoding: 2'b11 :: Luimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 3'b010 :: rd[4:0] :: 7'b1011011;
+            assembly: {"cv.adduRN", "{name(rd)}, {name(rs1)}, {name(rs2)}, {Luimm5}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (unsigned)(X[rs1] + X[rs2][31: 0] + (1 << (Luimm5 - 1))) >> Luimm5;
+                }
+            }
+        }
+        CV_SUBN {
+            encoding: 2'b00 :: Luimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b1011011;
+            assembly: {"cv.subN", "{name(rd)}, {name(rs1)}, {name(rs2)}, {Luimm5}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (signed)(X[rs1] - X[rs2][31: 0]) >> Luimm5;
+                }
+            }
+        }
+        CV_SUBUN {
+            encoding: 2'b01 :: Luimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b1011011;
+            assembly: {"cv.subuN", "{name(rd)}, {name(rs1)}, {name(rs2)}, {Luimm5}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (unsigned)(X[rs1] - X[rs2][31: 0]) >> Luimm5;
+                }
+            }
+        }
+        CV_SUBRN {
+            encoding: 2'b10 :: Luimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b1011011;
+            assembly: {"cv.subRN", "{name(rd)}, {name(rs1)}, {name(rs2)}, {Luimm5}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (signed)(X[rs1] - X[rs2][31: 0] + (1 << (Luimm5 - 1))) >> Luimm5;
+                }
+            }
+        }
+        CV_SUBURN {
+            encoding: 2'b11 :: Luimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b1011011;
+            assembly: {"cv.subuRN", "{name(rd)}, {name(rs1)}, {name(rs2)}, {Luimm5}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (unsigned)(X[rs1] - X[rs2][31: 0] + (1 << (Luimm5 - 1))) >> Luimm5;
+                }
+            }
+        }
+        // SOURCE FILE: instr_srcs/XCoreVALU4.txt
+        CV_ADDNR {
+            encoding: 7'b1000000 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.addNr", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (signed)(X[rd] + X[rs1]) >> X[rs2][31: 0][4:0];
+                }
+            }
+        }
+        CV_ADDUNR {
+            encoding: 7'b1000001 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.adduNr", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (unsigned)(X[rd] + X[rs1]) >> X[rs2][31: 0][4:0];
+                }
+            }
+        }
+        CV_ADDRNR {
+            encoding: 7'b1000010 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.addRNr", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (signed)(X[rd] + X[rs1] + (1 << (X[rs2][31: 0][4:0] - 1))) >> X[rs2][31: 0][4:0];
+                }
+            }
+        }
+        CV_ADDURNR {
+            encoding: 7'b1000011 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.adduRNr", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (unsigned)(X[rd] + X[rs1] + (1 << (X[rs2][31: 0][4:0] - 1))) >> X[rs2][31: 0][4:0];
+                }
+            }
+        }
+        CV_SUBNR {
+            encoding: 7'b1000100 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.subNr", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (signed)(X[rd] - X[rs1]) >> X[rs2][31: 0][4:0];
+                }
+            }
+        }
+        CV_SUBUNR {
+            encoding: 7'b1000101 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.subuNr", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (unsigned)(X[rd] - X[rs1]) >> X[rs2][31: 0][4:0];
+                }
+            }
+        }
+        CV_SUBRNR {
+            encoding: 7'b1000110 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.subRNr", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (signed)(X[rd] - X[rs1] + (1 << (X[rs2][31: 0][4:0] - 1))) >> X[rs2][31: 0][4:0];
+                }
+            }
+        }
+        CV_SUBURNR {
+            encoding: 7'b1000111 :: rs2[4:0] :: rs1[4:0] :: 3'b011 :: rd[4:0] :: 7'b0101011;
+            assembly: {"cv.subuRNr", "{name(rd)}, {name(rs1)}, {name(rs2)}" };
+            behavior: {
+                if (rd != 0) {
+                    X[rd] = (unsigned)(X[rd] - X[rs1] + (1 << (X[rs2][31: 0][4:0] - 1))) >> X[rs2][31: 0][4:0];
+                }
+            }
+        }
+    }
+}
