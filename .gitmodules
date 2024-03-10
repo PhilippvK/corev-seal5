@@ -4,9 +4,6 @@
 [submodule "coredsl-to-llvm"]
 	path = coredsl-to-llvm
 	url = ../coredsl-to-llvm.git
-[submodule "M2-ISA-R"]
-	path = M2-ISA-R
-	url = ../M2-ISA-R-llvmgen
 [submodule "llvm-project"]
 	path = llvm-project
 	url = https://github.com/llvm/llvm-project.git
