@@ -1,3 +1,5 @@
+## Seal5 development moved to [`tum-ei-eda/seal5`](https://github.com/tum-ei-eda/seal5) this repository is no longer being maintained.
+
 # Seal5
 
 This repository contains tools for our "**Se**mi-**a**utomated **L**LVM Generator for Custom RISC-**V** Instructions".
