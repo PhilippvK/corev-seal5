@@ -4,7 +4,7 @@
 
 This repository contains tools for our "**Se**mi-**a**utomated **L**LVM Generator for Custom RISC-**V** Instructions".
 
-*Warning:* Reafactorings are still ongoing, hence several fewtures are currently missing.
+*Warning:* Refactorings are still ongoing, hence several features are currently missing.
 
 ## Prerequisites
 
